@@ -1,0 +1,30 @@
+{
+  "name": "fofuxos-pdv-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Inicializador desktop do PDV Fofuxos Gestão (sem venda implementada)",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:portable": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "br.com.fofuxos.pdv",
+    "productName": "Fofuxos PDV",
+    "directories": { "output": "release" },
+    "files": ["electron/**/*", "package.json"],
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "portable", "arch": ["x64"] }] },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Fofuxos PDV"
+    }
+  }
+}

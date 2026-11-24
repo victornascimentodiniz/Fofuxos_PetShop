@@ -1,0 +1,119 @@
+/* Fofuxos Gestão — tema noturno completo 20.5.1.
+   Aplica-se exclusivamente quando a classe 'dark' está em <html>.
+   Não afeta o PDV Desktop nem o modo claro. */
+html.dark {
+  color-scheme: dark;
+  --fofuxos-bg: #101722;
+  --fofuxos-panel: #1b2736;
+  --fofuxos-panel-hover: #293a4d;
+  --fofuxos-muted-panel: #15202d;
+  --fofuxos-border: #354458;
+  --fofuxos-text: #f0f4f8;
+  --fofuxos-muted: #b1bfd1;
+  --color-brand-background: #101722;
+  --color-brand-dark: #20252b;
+}
+
+html.dark, html.dark body, html.dark #root { background: var(--fofuxos-bg); color: var(--fofuxos-text); }
+html.dark .bg-brand-background,
+html.dark [class~="bg-[#F5F6FA]"] { background-color: var(--fofuxos-bg) !important; }
+
+/* Utilitários usados nos cartões, tabelas e modais. */
+html.dark .bg-white,
+html.dark .bg-gray-50,
+html.dark .bg-gray-100,
+html.dark .bg-slate-50,
+html.dark .bg-slate-100,
+html.dark .bg-zinc-50,
+html.dark [class~="bg-[#FFFFFF]"],
+html.dark [class~="bg-[#fff]"] { background-color: var(--fofuxos-panel) !important; }
+html.dark .bg-gray-50, html.dark .bg-slate-50, html.dark .bg-gray-100,
+html.dark .bg-slate-100 { background-color: var(--fofuxos-muted-panel) !important; }
+
+html.dark .text-gray-950, html.dark .text-gray-900, html.dark .text-gray-800,
+html.dark .text-gray-700, html.dark .text-slate-950, html.dark .text-slate-900,
+html.dark .text-slate-800, html.dark .text-slate-700,
+html.dark .text-zinc-900, html.dark .text-brand-dark,
+html.dark [class~="text-[#20252B]"],
+html.dark [class~="text-[#253044]"] { color: var(--fofuxos-text) !important; }
+html.dark .text-gray-600, html.dark .text-gray-500, html.dark .text-gray-400,
+html.dark .text-slate-600, html.dark .text-slate-500, html.dark .text-slate-400,
+html.dark .text-zinc-500 { color: var(--fofuxos-muted) !important; }
+html.dark .border-gray-100, html.dark .border-gray-200, html.dark .border-gray-300,
+html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-300,
+html.dark .divide-gray-100 > :not(:last-child),
+html.dark .divide-gray-200 > :not(:last-child) { border-color: var(--fofuxos-border) !important; }
+html.dark .shadow, html.dark .shadow-sm, html.dark .shadow-md,
+html.dark .shadow-lg, html.dark .shadow-xl { box-shadow: 0 8px 25px #02071270 !important; }
+
+/* Corrige a linha branca e o contraste ao passar o mouse (ex.: Usuários). */
+html.dark table { color: var(--fofuxos-text); }
+html.dark table thead { background-color: #14202d; color: var(--fofuxos-muted); }
+html.dark table tbody tr { background-color: var(--fofuxos-panel); color: var(--fofuxos-text); }
+html.dark table tbody tr:hover,
+html.dark [class~="hover:bg-gray-50"]:hover,
+html.dark [class~="hover:bg-gray-100"]:hover,
+html.dark [class~="hover:bg-rose-50"]:hover,
+html.dark [class~="hover:bg-white"]:hover { background-color: var(--fofuxos-panel-hover) !important; color: var(--fofuxos-text); }
+html.dark table td, html.dark table th { border-color: var(--fofuxos-border); }
+
+/* Campos, selects e controles. */
+html.dark input, html.dark select, html.dark textarea {
+  color: var(--fofuxos-text);
+  background: #152232;
+  border-color: #435267;
+  caret-color: #f2aecf;
+}
+html.dark input::placeholder, html.dark textarea::placeholder { color: #9aacc0; opacity: 1; }
+html.dark input:focus, html.dark select:focus, html.dark textarea:focus { border-color: #db91b6; }
+html.dark option { background: #1b2736; color: #f0f4f8; }
+html.dark input:disabled, html.dark select:disabled, html.dark textarea:disabled { opacity: .65; }
+html.dark button:focus-visible, html.dark a:focus-visible { outline-color: #e39fc2; }
+
+/* Cores contextuais: alertas, marcadores e seus textos. */
+html.dark .bg-rose-50, html.dark .bg-pink-50, html.dark [class~="bg-[#F8E8F0]"] { background-color: #43273b !important; }
+html.dark .bg-emerald-50, html.dark .bg-green-50 { background-color: #153a31 !important; }
+html.dark .bg-red-50 { background-color: #47222e !important; }
+html.dark .bg-amber-50, html.dark .bg-yellow-50 { background-color: #42351d !important; }
+html.dark .text-red-600, html.dark .text-red-700, html.dark .text-red-800 { color: #ffb4bf !important; }
+html.dark .text-emerald-700, html.dark .text-emerald-800, html.dark .text-green-700 { color: #9ae6c6 !important; }
+html.dark .text-amber-600, html.dark .text-amber-700, html.dark .text-amber-800,
+html.dark .text-amber-900 { color: #f4d493 !important; }
+html.dark .text-rose-700, html.dark .text-pink-700 { color: #ffb9dc !important; }
+html.dark .text-white { color: #fff !important; }
+html.dark button:not(:disabled):hover { transition: background-color .14s, color .14s, border-color .14s; }
+
+/* Folhas CSS legadas: categorias, marcas, produtos, fornecedores e estoque. */
+html.dark .catalog-page, html.dark .products-page,
+html.dark .stock-page, html.dark .suppliers-page,
+html.dark .product-conversions-page {
+  color: var(--fofuxos-text);
+  --catalog-dark: var(--fofuxos-text);
+  --catalog-muted: var(--fofuxos-muted);
+  --catalog-border: var(--fofuxos-border);
+  --product-dark: var(--fofuxos-text);
+  --product-border: var(--fofuxos-border);
+  --product-muted: var(--fofuxos-muted);
+}
+html.dark :is(.catalog-page,.products-page,.stock-page,.suppliers-page,.product-conversions-page) :is(
+  .catalog-card,.catalog-panel,.catalog-modal,.catalog-stat,
+  .product-stat,.product-panel,.product-card,.product-modal,
+  .stock-stat,.stock-panel,.stock-modal,.stock-btn-outline,
+  .stock-actions button,.stock-pagination button,.stock-modal header button,
+  .supplier-card,.supplier-panel,.supplier-modal,
+  .conversion-card,.conversion-panel,.conversion-modal
+) { background-color: var(--fofuxos-panel) !important; color: var(--fofuxos-text); border-color: var(--fofuxos-border) !important; }
+html.dark .stock-table-wrap th { background: #14202d !important; color: var(--fofuxos-muted); }
+html.dark .stock-table-wrap td { border-color: var(--fofuxos-border); }
+html.dark .stock-current, html.dark .stock-conversion-info, html.dark .stock-preview { background: #152232; border-color: var(--fofuxos-border); }
+html.dark .stock-heading p, html.dark .stock-panel-top p,
+html.dark .stock-product small, html.dark .stock-stat span,
+html.dark .stock-modal header p { color: var(--fofuxos-muted); }
+html.dark .stock-pill.good { background: #183d30; color: #a8efd0; }
+html.dark .stock-pill.warning { background: #49371d; color: #f4d493; }
+html.dark .stock-pill.danger { background: #47222e; color: #ffb4bf; }
+html.dark .stock-pill.muted { background: #24354a; color: #b1bfd1; }
+
+/* Superfícies de formulários modais e cartões não utilitários. */
+html.dark [role="dialog"], html.dark [role="alertdialog"] { color: var(--fofuxos-text); }
+html.dark ::-webkit-scrollbar-thumb { background: #4c5e74; }

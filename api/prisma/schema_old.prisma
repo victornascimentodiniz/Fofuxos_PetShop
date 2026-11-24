@@ -1,0 +1,546 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// PERFIS ANTIGOS - TRANSITORIOS
+// ============================================
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  OPERATOR
+}
+
+// ============================================
+// USUARIOS
+// ============================================
+
+model User {
+  id                 String    @id @default(uuid()) @db.Uuid
+  name               String    @db.VarChar(120)
+  username           String    @unique @db.VarChar(50)
+  passwordHash       String    @map("password_hash") @db.VarChar(255)
+  role               UserRole  @default(OPERATOR)
+  profileId          String?   @map("profile_id") @db.Uuid
+  active             Boolean   @default(true)
+  mustChangePassword Boolean   @default(true) @map("must_change_password")
+  lastLoginAt        DateTime? @map("last_login_at")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  profile Profile? @relation(fields: [profileId], references: [id], onDelete: Restrict)
+
+  sessions            AuthSession[]
+  auditLogs           AuditLog[]
+  stockMovements      StockMovement[]
+  stockFractionations StockFractionation[]
+  purchasesCreated    Purchase[]           @relation("PurchaseCreatedBy")
+  purchaseReceipts    PurchaseReceipt[]    @relation("ReceiptReceivedBy")
+
+  @@index([role, active])
+  @@index([profileId])
+  @@index([active])
+  @@map("users")
+}
+
+// ============================================
+// PERFIS DE ACESSO
+// ============================================
+
+model Profile {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique @db.VarChar(80)
+  name        String   @unique @db.VarChar(100)
+  description String?  @db.Text
+  active      Boolean  @default(true)
+  isSystem    Boolean  @default(false) @map("is_system")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  users       User[]
+  permissions ProfilePermission[]
+
+  @@index([active])
+  @@map("profiles")
+}
+
+// ============================================
+// PERMISSOES DO SISTEMA
+// ============================================
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique @db.VarChar(120)
+  name        String   @db.VarChar(120)
+  module      String   @db.VarChar(80)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  profiles ProfilePermission[]
+
+  @@index([module])
+  @@map("permissions")
+}
+
+// ============================================
+// VINCULO ENTRE PERFIS E PERMISSOES
+// ============================================
+
+model ProfilePermission {
+  profileId    String   @map("profile_id") @db.Uuid
+  permissionId String   @map("permission_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  profile    Profile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, permissionId])
+  @@index([permissionId])
+  @@map("profile_permissions")
+}
+
+// ============================================
+// SESSOES DE AUTENTICACAO
+// ============================================
+
+model AuthSession {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash") @db.VarChar(255)
+  ipAddress String?   @map("ip_address") @db.VarChar(45)
+  userAgent String?   @map("user_agent") @db.Text
+  expiresAt DateTime  @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("auth_sessions")
+}
+
+// ============================================
+// AUDITORIA
+// ============================================
+
+model AuditLog {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String?  @map("user_id") @db.Uuid
+  action      String   @db.VarChar(100)
+  description String   @db.Text
+  entity      String?  @db.VarChar(100)
+  entityId    String?  @map("entity_id") @db.VarChar(100)
+  ipAddress   String?  @map("ip_address") @db.VarChar(45)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+// ============================================
+// UNIDADES DE MEDIDA
+// ============================================
+
+enum ProductUnit {
+  UN
+  KG
+  G
+  L
+  ML
+}
+
+// ============================================
+// TIPO DE COMERCIALIZACAO
+// ============================================
+
+enum ProductSaleType {
+  UNIT
+  WEIGHT
+}
+
+// ============================================
+// CATEGORIAS DE PRODUTOS
+// ============================================
+
+model Category {
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @unique @db.VarChar(100)
+  description String? @db.Text
+  active      Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  products Product[]
+
+  @@index([active])
+  @@map("categories")
+}
+
+// ============================================
+// MARCAS DE PRODUTOS
+// ============================================
+
+model Brand {
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @unique @db.VarChar(100)
+  description String? @db.Text
+  active      Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  products Product[]
+
+  @@index([active])
+  @@map("brands")
+}
+
+// ============================================
+// CADASTRO DE PRODUTOS
+// ============================================
+
+model Product {
+  id String @id @default(uuid()) @db.Uuid
+
+  code Int @unique @default(autoincrement())
+
+  barcode String? @unique @db.VarChar(50)
+
+  name        String  @db.VarChar(150)
+  description String? @db.Text
+
+  categoryId String  @map("category_id") @db.Uuid
+  brandId    String? @map("brand_id") @db.Uuid
+
+  unit     ProductUnit     @default(UN)
+  saleType ProductSaleType @default(UNIT) @map("sale_type")
+
+  costPrice Decimal @default(0) @map("cost_price") @db.Decimal(14, 4)
+  salePrice Decimal @default(0) @map("sale_price") @db.Decimal(14, 2)
+
+  controlStock Boolean  @default(true) @map("control_stock")
+  currentStock Decimal  @default(0) @map("current_stock") @db.Decimal(14, 3)
+  minStock     Decimal  @default(0) @map("min_stock") @db.Decimal(14, 3)
+  maxStock     Decimal? @map("max_stock") @db.Decimal(14, 3)
+
+  location     String? @db.VarChar(100)
+  observations String? @db.Text
+  imagePath    String? @map("image_path") @db.VarChar(500)
+
+  active Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  brand    Brand?   @relation(fields: [brandId], references: [id], onDelete: Restrict)
+
+  // ==========================================
+  // RELACIONAMENTOS DE FRACIONAMENTO
+  // ==========================================
+
+  // Regra de conversao quando este produto
+  // representa uma embalagem de origem.
+
+  sourceConversion ProductConversion? @relation("ConversionSource")
+
+  // Regras de conversao que geram este produto.
+  // Permite receber mercadorias de varias
+  // embalagens com tamanhos diferentes.
+
+  destinationConversions ProductConversion[]   @relation("ConversionDestination")
+  purchaseItems          PurchaseItem[]
+  purchaseReceiptItems   PurchaseReceiptItem[]
+
+  // Historico de movimentacoes e fracionamentos de estoque
+  stockMovements         StockMovement[]
+  outgoingFractionations StockFractionation[] @relation("StockFractionationSource")
+  incomingFractionations StockFractionation[] @relation("StockFractionationDestination")
+
+  @@index([name])
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([active])
+  @@index([saleType])
+  @@map("products")
+}
+
+// ============================================
+// CONVERSAO E FRACIONAMENTO DE PRODUTOS
+// ============================================
+
+model ProductConversion {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Produto de origem: embalagem fechada.
+
+  sourceProductId String @unique @map("source_product_id") @db.Uuid
+
+  // Produto de destino: mercadoria fracionada.
+
+  destinationProductId String @map("destination_product_id") @db.Uuid
+
+  // Quantidade gerada por unidade de origem.
+  // Exemplo: 1 saco gera 15 kg de racao.
+
+  conversionFactor Decimal @map("conversion_factor") @db.Decimal(14, 3)
+
+  description String? @db.Text
+
+  active Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // ==========================================
+  // RELACIONAMENTOS
+  // ==========================================
+
+  sourceProduct Product @relation("ConversionSource", fields: [sourceProductId], references: [id], onDelete: Restrict)
+
+  destinationProduct Product @relation("ConversionDestination", fields: [destinationProductId], references: [id], onDelete: Restrict)
+
+  @@index([destinationProductId])
+  @@index([active])
+  @@map("product_conversions")
+}
+
+enum StockMovementType {
+  ENTRY
+  EXIT
+  ADJUSTMENT
+  FRACTION_OUT
+  FRACTION_IN
+  SALE
+  PURCHASE
+}
+
+model StockMovement {
+  id String @id @default(uuid()) @db.Uuid
+
+  productId String @map("product_id") @db.Uuid
+  userId    String @map("user_id") @db.Uuid
+
+  type StockMovementType
+
+  // Quantidade movimentada:
+  // Positiva para entrada.
+  // Negativa para saida.
+
+  quantity Decimal @db.Decimal(14, 3)
+
+  // Saldos antes e depois da operacao.
+
+  previousStock Decimal @map("previous_stock") @db.Decimal(14, 3)
+  newStock      Decimal @map("new_stock") @db.Decimal(14, 3)
+
+  // Custo unitario registrado na operacao.
+
+  unitCost Decimal? @map("unit_cost") @db.Decimal(14, 4)
+
+  // Identificador que agrupa movimentacoes
+  // pertencentes a uma mesma operacao.
+
+  operationId String? @map("operation_id") @db.Uuid
+
+  reason       String  @db.VarChar(150)
+  observations String? @db.Text
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([productId, createdAt])
+  @@index([userId])
+  @@index([type])
+  @@index([operationId])
+  @@index([createdAt])
+  @@map("stock_movements")
+}
+
+model StockFractionation {
+  id String @id @default(uuid()) @db.Uuid
+
+  sourceProductId      String @map("source_product_id") @db.Uuid
+  destinationProductId String @map("destination_product_id") @db.Uuid
+
+  userId String @map("user_id") @db.Uuid
+
+  // Quantas embalagens foram abertas.
+
+  packages Int
+
+  // Fator utilizado nesta operacao.
+  // Exemplo: 1 saco = 15 KG.
+
+  conversionFactor Decimal @map("conversion_factor") @db.Decimal(14, 3)
+
+  // Quantidade total produzida antes de perdas.
+
+  grossQuantity Decimal @map("gross_quantity") @db.Decimal(14, 3)
+
+  // Perdas registradas durante a abertura.
+
+  lossQuantity Decimal @default(0) @map("loss_quantity") @db.Decimal(14, 3)
+
+  // Quantidade efetivamente adicionada ao destino.
+
+  netQuantity Decimal @map("net_quantity") @db.Decimal(14, 3)
+
+  // Valores usados para rastrear os custos.
+
+  sourceUnitCost      Decimal @map("source_unit_cost") @db.Decimal(14, 4)
+  totalCost           Decimal @map("total_cost") @db.Decimal(16, 4)
+  destinationUnitCost Decimal @map("destination_unit_cost") @db.Decimal(14, 4)
+
+  observations String? @db.Text
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  sourceProduct Product @relation("StockFractionationSource", fields: [sourceProductId], references: [id], onDelete: Restrict)
+
+  destinationProduct Product @relation("StockFractionationDestination", fields: [destinationProductId], references: [id], onDelete: Restrict)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([sourceProductId, createdAt])
+  @@index([destinationProductId, createdAt])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("stock_fractionations")
+}
+
+// ============================================
+// FORNECEDORES E COMPRAS - ETAPA 18.1
+// ============================================
+
+enum PurchaseStatus {
+  DRAFT
+  ORDERED
+  PARTIALLY_RECEIVED
+  RECEIVED
+  CANCELLED
+}
+
+model Supplier {
+  id                String   @id @default(uuid()) @db.Uuid
+  name              String   @db.VarChar(150)
+  tradeName         String?  @map("trade_name") @db.VarChar(150)
+  document          String?  @unique @db.VarChar(18)
+  stateRegistration String?  @map("state_registration") @db.VarChar(30)
+  email             String?  @db.VarChar(150)
+  phone             String?  @db.VarChar(30)
+  contactName       String?  @map("contact_name") @db.VarChar(120)
+  zipCode           String?  @map("zip_code") @db.VarChar(10)
+  street            String?  @db.VarChar(150)
+  addressNumber     String?  @map("address_number") @db.VarChar(20)
+  complement        String?  @db.VarChar(100)
+  neighborhood      String?  @db.VarChar(100)
+  city              String?  @db.VarChar(100)
+  state             String?  @db.VarChar(2)
+  observations      String?  @db.Text
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  purchases Purchase[]
+
+  @@index([name])
+  @@index([active])
+  @@map("suppliers")
+}
+
+model Purchase {
+  id            String         @id @default(uuid()) @db.Uuid
+  number        Int            @unique @default(autoincrement())
+  supplierId    String         @map("supplier_id") @db.Uuid
+  createdById   String         @map("created_by_id") @db.Uuid
+  status        PurchaseStatus @default(DRAFT)
+  expectedAt    DateTime?      @map("expected_at")
+  invoiceNumber String?        @map("invoice_number") @db.VarChar(50)
+  invoiceSeries String?        @map("invoice_series") @db.VarChar(20)
+  notes         String?        @db.Text
+  totalAmount   Decimal        @default(0) @map("total_amount") @db.Decimal(16, 2)
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  supplier  Supplier          @relation(fields: [supplierId], references: [id], onDelete: Restrict)
+  createdBy User              @relation("PurchaseCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  items     PurchaseItem[]
+  receipts  PurchaseReceipt[]
+
+  @@index([supplierId, createdAt])
+  @@index([status])
+  @@index([createdById])
+  @@map("purchases")
+}
+
+model PurchaseItem {
+  id               String  @id @default(uuid()) @db.Uuid
+  purchaseId       String  @map("purchase_id") @db.Uuid
+  productId        String  @map("product_id") @db.Uuid
+  quantity         Decimal @db.Decimal(14, 3)
+  receivedQuantity Decimal @default(0) @map("received_quantity") @db.Decimal(14, 3)
+  unitCost         Decimal @map("unit_cost") @db.Decimal(14, 4)
+  totalCost        Decimal @map("total_cost") @db.Decimal(16, 4)
+
+  purchase     Purchase              @relation(fields: [purchaseId], references: [id], onDelete: Restrict)
+  product      Product               @relation(fields: [productId], references: [id], onDelete: Restrict)
+  receiptItems PurchaseReceiptItem[]
+
+  @@unique([purchaseId, productId])
+  @@index([productId])
+  @@map("purchase_items")
+}
+
+// Cada recebimento gera seu proprio identificador de operacao,
+// compartilhado com os registros de stock_movements.
+model PurchaseReceipt {
+  id           String   @id @default(uuid()) @db.Uuid
+  purchaseId   String   @map("purchase_id") @db.Uuid
+  receivedById String   @map("received_by_id") @db.Uuid
+  operationId  String   @unique @default(uuid()) @map("operation_id") @db.Uuid
+  notes        String?  @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  purchase   Purchase              @relation(fields: [purchaseId], references: [id], onDelete: Restrict)
+  receivedBy User                  @relation("ReceiptReceivedBy", fields: [receivedById], references: [id], onDelete: Restrict)
+  items      PurchaseReceiptItem[]
+
+  @@index([purchaseId, createdAt])
+  @@index([receivedById])
+  @@map("purchase_receipts")
+}
+
+model PurchaseReceiptItem {
+  id             String   @id @default(uuid()) @db.Uuid
+  receiptId      String   @map("receipt_id") @db.Uuid
+  purchaseItemId String   @map("purchase_item_id") @db.Uuid
+  productId      String   @map("product_id") @db.Uuid
+  quantity       Decimal  @db.Decimal(14, 3)
+  unitCost       Decimal  @map("unit_cost") @db.Decimal(14, 4)
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  receipt      PurchaseReceipt @relation(fields: [receiptId], references: [id], onDelete: Restrict)
+  purchaseItem PurchaseItem    @relation(fields: [purchaseItemId], references: [id], onDelete: Restrict)
+  product      Product         @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@unique([receiptId, purchaseItemId])
+  @@index([productId])
+  @@map("purchase_receipt_items")
+}

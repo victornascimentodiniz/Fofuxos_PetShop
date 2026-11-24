@@ -1,0 +1,148 @@
+*{box-sizing:border-box}body{margin:0;font-family:Inter,'Segoe UI',Arial,sans-serif;background:#f6f7fa;color:#283041}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.shell{display:flex;min-height:100vh}.sidebar{width:238px;flex-shrink:0;background:#fff;border-right:1px solid #e9eaf0;display:flex;flex-direction:column;padding:26px 14px}.logo{display:flex;align-items:center;gap:11px;padding:0 12px 20px}.logoicon{width:44px;height:44px;display:grid;place-items:center;background:#ad4679;color:white;border-radius:13px}.logo strong{font-size:22px;letter-spacing:-.7px;display:block}.logo small{font-size:11px;color:#8993a0;font-weight:600;display:block;margin-top:2px}.divider{height:1px;background:#eef0f4;margin:0 12px 26px}.sectionlabel{font-size:10px;color:#a0a8b5;letter-spacing:1.3px;font-weight:800;padding:0 17px;margin-bottom:12px}.nav{width:100%;display:flex;align-items:center;gap:12px;background:transparent;border:0;text-align:left;padding:14px 15px;border-radius:10px;margin-bottom:5px;color:#677184;font-size:13px;font-weight:650}.nav.active{color:#a3366b;background:#fbedf4}.nav:hover{background:#f5f5f7}.sidebottom{margin-top:auto}.statusdot{margin:18px 11px;padding:12px;border-radius:10px;background:#fff8e9;color:#956d23;font-size:10px;font-weight:800;display:flex;gap:9px;align-items:center}.dot{width:8px;height:8px;border-radius:50%;background:#dfac46}.operator{border-top:1px solid #e9ebf0;padding:18px 9px 0;display:flex;align-items:center;gap:9px;color:#9aa3b1}.avatar{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;background:#f6e2ec;color:#ab4776;font-size:12px;font-weight:900}.operator div:nth-child(2){flex:1}.operator strong{display:block;color:#303847;font-size:11px}.operator small{display:block;color:#9aa3b1;font-size:10px;margin-top:3px}main{flex:1;min-width:0}.topbar{background:#fff;border-bottom:1px solid #ecedf2;min-height:105px;padding:25px 32px;display:flex;justify-content:space-between;align-items:center}.topbar h1{font-size:23px;margin:6px 0 0;letter-spacing:-.6px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.25px;color:#a1a8b7}.headeractions{display:flex;align-items:center;gap:18px}.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:750}.pillgray{color:#737e8c;background:#f0f2f5}.pillgreen{color:#14805e;background:#e8f8ef}.date{font-size:12px;color:#a1a8b7}.mainbody{padding:24px 30px}.demo{display:flex;gap:10px;align-items:start;background:#fff9e9;border:1px solid #f3dfb1;border-radius:10px;color:#796124;padding:12px 15px;font-size:12px;line-height:1.55;margin-bottom:16px}.demo svg{flex-shrink:0;margin-top:2px}.notice{display:flex;justify-content:space-between;gap:12px;background:#eaf2ff;border:1px solid #d2e3ff;color:#245b9c;border-radius:10px;padding:13px 16px;font-size:12px;margin-bottom:14px}.notice button{border:0;background:transparent;color:inherit}.salesgrid{display:grid;grid-template-columns:minmax(390px,1.4fr) minmax(340px,1fr);gap:20px;align-items:stretch}.panel{background:white;border:1px solid #e8ebf1;border-radius:15px;box-shadow:0 4px 17px #23304706}.panelsearch,.rightpane{height:calc(100vh - 225px);min-height:510px}.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 22px 16px}.heading h2{font-size:17px;margin:0 0 5px}.heading p{font-size:11px;color:#9aa3b0;margin:0}.badge{background:#f4f4f8;color:#727e8d;border-radius:7px;padding:7px 9px;font-weight:650;font-size:10px}.search{margin:0 22px 14px;height:46px;border:1px solid #e1e6ed;border-radius:10px;display:flex;align-items:center;gap:10px;padding:0 13px;color:#9ca4b1}.search:focus-within{border-color:#ad4679}.search input{min-width:0;flex:1;border:0;outline:0;font-size:12px;color:#313a48}.products{overflow:auto;max-height:calc(100% - 152px);padding:0 15px}.product{width:100%;display:flex;align-items:center;gap:12px;border:1px solid #edf0f4;border-radius:10px;background:#fff;text-align:left;padding:14px 12px;margin-bottom:9px}.product:hover{border-color:#dfb6cb;background:#fffafd}.producticon{height:43px;width:43px;flex-shrink:0;background:#faf0f5;border-radius:10px;display:grid;place-items:center;color:#ae4b79}.productdata{flex:1;min-width:0}.productdata strong{font-size:12px;display:block;overflow-wrap:anywhere}.productdata small,.productright small{font-size:10px;color:#9aa5b3;display:block;margin-top:5px}.productright{text-align:right;flex-shrink:0}.productright strong{color:#aa4577;font-size:13px}.addicon{color:#ad4679;flex-shrink:0}.rightpane{display:flex;flex-direction:column}.iconbutton{border:1px solid #e7ebef;border-radius:8px;background:white;color:#83909d;padding:8px}.cart{overflow:auto;flex:1;padding:0 20px}.empty{height:100%;min-height:160px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#c0c6d1;text-align:center}.empty h3{font-size:14px;color:#657183;margin:15px 0 0}.empty p{font-size:11px}.cartitem{padding:14px 0;border-bottom:1px solid #f1f2f5}.carttop,.cartbottom{display:flex;justify-content:space-between;align-items:start;gap:10px}.carttop strong{font-size:12px}.carttop small{display:block;font-size:11px;color:#9ba5b3;margin-top:5px}.remove{border:0;background:transparent;color:#b6bec9}.cartbottom{align-items:center;margin-top:12px}.cartbottom>strong{font-size:13px}.qty{border:1px solid #eaebef;border-radius:8px;display:flex;align-items:center;gap:14px;padding:5px 8px;font-size:12px}.qty button{display:grid;place-items:center;border:0;background:transparent;color:#a94c7a}.payment{padding:16px 20px;border-top:1px solid #f0f1f4}.payment>span{font-size:11px;color:#8792a1;font-weight:650}.paymentbuttons{display:flex;gap:7px;margin-top:11px}.paymentbuttons button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 4px;font-size:10px;background:#fff;border:1px solid #e7ebf0;border-radius:8px;color:#748193}.paymentbuttons button.selected{background:#fceef5;border-color:#e6adc9;color:#a73d73}.total{padding:18px 20px 22px;background:#fcf8fb;border-top:1px solid #f1e6eb}.total>div{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.total span{font-size:13px;color:#667285}.total strong{color:#ab4074;font-size:27px}.primary{border:0;background:#ad4679;color:white;display:inline-flex;justify-content:center;align-items:center;gap:9px;border-radius:9px;padding:14px 18px;font-weight:750;font-size:12px}.primary:hover:not(:disabled){background:#983a68}.total .primary{width:100%;justify-content:center;font-size:14px}.total .primary span{margin-left:auto;color:white}.total small{font-size:10px;color:#9d96a3;display:block;text-align:center;margin-top:10px}.cashcontent{display:grid;grid-template-columns:1.4fr 1fr;gap:22px}.cashcard{text-align:center;padding:45px 35px}.cashicon{background:#f7e8ef;width:70px;height:70px;display:grid;place-items:center;border-radius:20px;color:#ad4679;margin:0 auto 20px}.cashcard h2{font-size:22px}.cashcard p{font-size:13px;color:#818c9a;line-height:1.8;max-width:400px;margin:auto}.cashbuttons{margin-top:25px}.cashinfo{padding:26px}.cashinfo h3{margin:0 0 20px;font-size:17px}.inforow{display:flex;align-items:center;gap:13px;padding:16px 0;border-bottom:1px solid #f0f1f4}.inforow svg{color:#219773}.inforow strong{display:block;font-size:12px}.inforow small{display:block;color:#8995a3;margin-top:5px;font-size:11px}.red{background:#c24855}.history{text-align:center;padding:90px 30px;color:#ad4679}.history h2{color:#273143}.history p{color:#83909e;font-size:12px}.secondary{border:1px solid #e1e6ed;background:#fff;color:#6e7989;border-radius:9px;padding:11px 16px;display:inline-flex;gap:8px;align-items:center;justify-content:center;font-weight:650}.overlay{position:fixed;inset:0;background:#18203399;display:grid;place-items:center;z-index:50;padding:20px}.modal{width:100%;max-width:430px;background:white;border-radius:16px;padding:25px;box-shadow:0 24px 85px #1c243b45}.modaltitle{display:flex;gap:10px;align-items:center;color:#ad4679}.modaltitle h3{margin:0;color:#20283a}.modal p,.modal small{font-size:12px;color:#8190a1;line-height:1.5}.modal label{font-weight:650;font-size:12px;display:block;margin:20px 0 8px}.modal input{width:100%;padding:13px;border:1px solid #e0e5ec;border-radius:9px;outline:none}.modal small{display:block;margin-top:9px}.modalbuttons{margin-top:23px;display:flex;justify-content:flex-end;gap:9px}@media(max-width:1100px){.sidebar{width:200px}.mainbody{padding:20px}.salesgrid{grid-template-columns:minmax(330px,1.1fr) minmax(310px,1fr)}}
+/* Etapa 19.5 — integração real */
+.loginbg{display:grid;place-items:center;min-height:100vh;background:#f7eaf1;padding:30px}
+.loginpanel{display:flex;flex-direction:column;gap:11px;width:min(420px,100%);background:#fff;padding:32px;border:1px solid #ebd6e0;border-radius:18px;box-shadow:0 15px 60px #392b3d15}
+.loginpanel .logo{padding:0 0 14px}.loginpanel h2{margin:6px 0 0}.loginpanel p,.loginpanel .hint{font-size:12px;color:#778395;line-height:1.6}.loginpanel label{font-size:12px;font-weight:650;margin-top:8px}.loginpanel input,.cashreceived input{padding:12px;border:1px solid #dee3ec;border-radius:9px;background:white}.loginpanel .primary{margin-top:9px}.loginpanel .hint{margin-top:12px}
+.errorline{display:flex;align-items:flex-start;gap:9px;background:#fff0f0;color:#ad273d;border:1px solid #f5b6bd;border-radius:10px;padding:13px;margin-bottom:15px;font-size:12px;line-height:1.5}.errorline button{border:0;background:transparent;margin-left:auto;color:inherit}
+.operator button{border:0;background:none;color:#87929e;padding:0}.small{font-size:11px;padding:8px 10px}.cashreceived{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:11px;color:#616b7c}.cashreceived input{width:100%}.cashreceived small{color:#6d7c8b}.cashbuttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.history{padding:25px;text-align:left}.historylist{margin-top:22px}.historyrow{display:flex;gap:20px;justify-content:space-between;align-items:center;padding:15px;border-bottom:1px solid #edf0f4;font-size:12px}.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+/* Etapa 19.9 — login com seleção rápida de operadores */
+.loginbg{display:flex;align-items:center;justify-content:center;padding:26px;min-height:100vh;background:radial-gradient(circle at 20% 12%,#fff 0%,#fcebf3 45%,#f7e8f1 100%)}
+.login-layout{width:min(1160px,100%);display:grid;grid-template-columns:minmax(320px,410px) minmax(410px,1fr);gap:22px;align-items:stretch}
+.login-layout .loginpanel{width:100%;border-radius:20px;padding:35px 32px;justify-content:center;box-shadow:0 16px 55px #46304212}
+.loginpanel .login-welcome{margin-bottom:7px}.loginpanel .login-welcome h2{font-size:28px;letter-spacing:-.8px;margin:6px 0 0}.loginpanel .login-welcome p{font-size:13px}
+.login-eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#b45b88}
+.loginpanel input:focus{outline:2px solid #db91b6;outline-offset:1px}
+.loginpanel .hint{display:flex;gap:6px;align-items:flex-start}
+.login-operators{background:#fff;border:1px solid #ebd6e0;border-radius:20px;padding:30px;box-shadow:0 16px 55px #46304212;display:flex;flex-direction:column;min-height:510px;max-height:calc(100vh - 52px)}
+.login-operators-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}.login-operators-header h2{font-size:24px;letter-spacing:-.7px;margin:7px 0}.login-operators-header p{color:#7e8898;margin:0;font-size:13px}
+.login-refresh{width:40px;height:40px;flex-shrink:0;border:1px solid #ebdce5;border-radius:11px;color:#ad4679;background:#fff;display:grid;place-items:center}.login-refresh:hover{background:#fdf0f6}
+.login-operators-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;overflow-y:auto;align-content:start;padding:3px 4px 8px 2px;flex:1}
+.login-operator-card{position:relative;min-height:135px;padding:16px 8px 12px;background:#faf8fa;color:#273043;border:1.5px solid #f0e4ea;border-radius:15px;display:flex;flex-direction:column;align-items:center;gap:7px;justify-content:center;transition:background .15s,border-color .15s,transform .15s;min-width:0}
+.login-operator-card:hover:not(:disabled){background:#fff3f8;border-color:#d793b6;transform:translateY(-1px)}.login-operator-card.selected{border-color:#ad4679;background:#fcebf4;box-shadow:0 0 0 1px #ad467933}
+.operator-avatar{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:#f0d7e3;color:#a23b72;font-size:18px;font-weight:850}.login-operator-card.selected .operator-avatar{background:#ad4679;color:white}
+.login-operator-card strong{font-size:12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.login-operator-card small{font-size:10px;color:#8a93a0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.operator-selected{position:absolute;top:9px;right:9px;color:#ad4679}.operators-placeholder{grid-column:1/-1;padding:30px 14px;font-size:13px;line-height:1.6;color:#798492;display:flex;justify-content:center;align-items:center;gap:10px;text-align:center}
+.login-operators-footer{padding-top:20px;margin-top:12px;display:flex;gap:9px;align-items:center;color:#9297a4;font-size:11px;border-top:1px solid #f2e6ed}
+@media(max-width:1050px){.login-layout{grid-template-columns:minmax(300px,370px) minmax(340px,1fr)}.login-operators-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-operators{padding:22px}}
+@media(max-width:760px){.login-layout{grid-template-columns:1fr;max-width:550px}.login-operators{min-height:280px;max-height:none}.login-operators-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-height:290px}.loginbg{padding:15px}}
+@media(max-width:460px){.login-operators-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-layout .loginpanel{padding:25px}.login-operators{padding:20px}}
+
+/* Etapa 20.0 - aviso de caixa obrigatorio apos login */
+.cash-login-overlay{z-index:80;background:rgba(24,32,51,.72)}
+.cash-login-dialog{max-width:490px;text-align:center;padding:30px}
+.cash-login-dialog-icon{width:62px;height:62px;background:#fcebf4;color:#ad4679;display:grid;place-items:center;margin:0 auto 13px;border-radius:20px}
+.cash-login-dialog h2{font-size:21px;margin:10px 0 8px;color:#253044}
+.cash-login-dialog p{font-size:13px;line-height:1.7;color:#657284}
+.cash-login-dialog .cash-login-warning{color:#9a4c08;background:#fff6e6;padding:9px;border-radius:9px}
+.cash-login-actions{justify-content:center;flex-wrap:wrap}
+
+/* Etapa 20.2 — botao para fechar o programa na tela de login */
+.login-exit{display:flex;align-items:center;justify-content:center;gap:9px;padding:11px 14px;background:#fff;color:#6e5162;border:1px solid #ead8e2;border-radius:10px;font-weight:700;cursor:pointer;transition:background .15s,color .15s}
+.login-exit:hover:not(:disabled){background:#fcebf4;color:#9d346a}
+.login-exit:disabled{opacity:.5;cursor:not-allowed}
+
+/* Etapa 20.3 - Grupos de atendimento no PDV */
+.attendance-browser{flex:1;min-height:0;overflow-y:auto;padding:0 14px 16px}
+.attendance-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 8px 14px}
+.attendance-label{font-weight:800;font-size:10px;letter-spacing:1.3px;color:#9c7289}
+.attendance-back,.attendance-refresh{border:1px solid #eadce5;background:#fff;color:#a33d71;padding:9px 12px;border-radius:9px;font-weight:700;font-size:11px;display:inline-flex;align-items:center;gap:7px}
+.attendance-back:hover,.attendance-refresh:hover{background:#fff1f8}
+.attendance-groups-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 8px 15px}
+.attendance-tile{--group-accent:#ad4679;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;min-height:145px;border:1px solid #ebdce5;border-radius:13px;background:#fff;color:#303847;padding:14px 8px;text-align:center}
+.attendance-tile:hover:not(:disabled){border-color:var(--group-accent);background:#fdf6fa;transform:translateY(-1px)}
+.attendance-tile-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:#fbedf4;color:var(--group-accent)}
+.attendance-tile strong{font-size:13px;overflow-wrap:anywhere}.attendance-tile small{font-size:10px;color:#8e97a5}
+.attendance-group-title{font-size:14px;margin:0 0 16px 8px;color:#273044}
+.attendance-products-list{max-height:none;overflow:visible;padding:0 5px}
+.attendance-empty{grid-column:1/-1;text-align:center;color:#7f8896;background:#faf8fa;padding:24px;border-radius:13px;font-size:12px;line-height:1.7;display:flex;align-items:center;justify-content:center;gap:8px}
+.attendance-error{background:#fff0f0;color:#a52144;border:1px solid #f5cad2;border-radius:10px;margin:0 8px 14px;padding:12px;font-size:12px}
+.panelsearch{display:flex;flex-direction:column;overflow:hidden}
+.panelsearch>.heading,.panelsearch>.search{flex-shrink:0}
+@media(max-width:1200px){.attendance-groups-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1550px){.attendance-groups-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Etapa 20.4 — frente de caixa de uso rapido, sem alterar a API nem a logica de vendas */
+.shell{height:100vh;min-height:0;overflow:hidden}
+.shell>.sidebar{width:204px;padding:20px 11px 14px}
+.sidebar .logo{padding-bottom:15px}
+.sidebar .divider{margin-bottom:18px}
+.sidebar .nav{padding:12px 11px;font-size:12px}
+.shell>main{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.topbar{min-height:76px;padding:14px 26px;flex-shrink:0}
+.topbar h1{font-size:21px;margin-top:4px}
+.mainbody{padding:14px 18px 16px;flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column}
+.mainbody>.demo{padding:8px 11px;font-size:10px;margin-bottom:9px;border-radius:9px;line-height:1.35}
+.mainbody>.demo svg{height:14px;width:14px}
+.mainbody>.notice,.mainbody>.errorline{margin-bottom:9px;padding:9px 12px}
+.salesgrid{flex:1;min-height:0;grid-template-columns:minmax(430px,1.7fr) minmax(360px,.95fr);gap:14px;align-items:stretch}
+.salesgrid>.panel{height:100%;min-height:0;border-radius:16px;box-shadow:0 5px 21px #29304808}
+.panelsearch>.heading{padding:17px 18px 13px}
+.rightpane>.heading{padding:18px 18px 13px;border-bottom:1px solid #f1e8ee}
+.heading h2{font-size:19px;margin:4px 0}
+.heading p{font-size:11px}
+.pos-kicker{font-size:9px;letter-spacing:1.4px;font-weight:850;color:#ab4879}
+.panelsearch>.search{height:52px;margin:0 18px 16px;padding:0 15px;border-radius:12px;border-color:#ead7e1;background:#fff}
+.search input{font-size:13px}
+.search-key{border:1px solid #e8d9e0;border-radius:7px;padding:5px 7px;display:inline-flex;gap:5px;align-items:center;color:#9b7487;font-size:10px;white-space:nowrap;font-weight:750}
+.attendance-browser{padding:0 15px 20px}
+.attendance-toolbar{padding:1px 3px 13px}
+.attendance-groups-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:0 2px 14px}
+.attendance-tile{min-height:155px;gap:11px;padding:16px 9px;border-color:#eee2e9;border-radius:15px;background:linear-gradient(180deg,#fff 0%,#fffbfd 100%);box-shadow:0 3px 10px #51344708;transition:border-color .15s,transform .15s,box-shadow .15s}
+.attendance-tile:hover:not(:disabled){background:#fff4f9;box-shadow:0 7px 22px #7b32591c;transform:translateY(-2px)}
+.attendance-tile:focus-visible,.product:focus-visible{outline:3px solid #e39abc;outline-offset:1px}
+.attendance-tile-icon{width:59px;height:59px;border-radius:18px;background:color-mix(in srgb,var(--group-accent) 12%,white);color:var(--group-accent)}
+.attendance-tile strong{font-size:13px;line-height:1.35}
+.attendance-tile small{font-size:11px}
+.attendance-group-title{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:2px 7px 17px;font-size:17px}
+.attendance-group-title span{font-size:10px;color:#9e91a0;font-weight:500;display:inline-flex;align-items:center}
+.attendance-products-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:10px;padding:0 2px 12px}
+.attendance-products-list>.attendance-group-title,.attendance-products-list>.attendance-empty{grid-column:1/-1}
+.attendance-products-list .product{min-height:89px;margin:0;padding:13px;border-radius:12px}
+.attendance-products-list .productdata strong{font-size:12px}
+.attendance-products-list .productright strong{font-size:13px}
+.attendance-products-list .producticon{width:39px;height:39px}
+.rightpane{overflow:hidden}
+.rightpane .cart{min-height:0;overflow:auto;padding:0 17px}
+.rightpane .cartitem{padding:13px 0}
+.rightpane .empty{min-height:140px}
+.rightpane .payment{flex-shrink:0;padding:14px 18px 12px}
+.rightpane .paymentbuttons{margin-top:9px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.rightpane .paymentbuttons button{min-height:43px;padding:8px 3px;font-size:10px;flex-wrap:wrap}
+.rightpane .total{flex-shrink:0;padding:15px 18px 17px}
+.rightpane .total>div{margin-bottom:10px}
+.rightpane .total strong{font-size:30px}
+.rightpane .total .primary{min-height:47px;font-size:14px}
+.rightpane .total small{font-size:10px;margin-top:7px}
+/* Caixa e historico podem rolar quando a tela for baixa. */
+.cashcontent,.history{flex-shrink:0}
+@media(max-width:1450px){
+ .attendance-groups-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .attendance-products-list{grid-template-columns:1fr}
+ .salesgrid{grid-template-columns:minmax(360px,1.45fr) minmax(330px,1fr)}
+}
+@media(max-width:1050px){
+ .shell>.sidebar{width:176px}
+ .topbar{padding:12px 15px}
+ .mainbody{padding:10px}
+ .salesgrid{grid-template-columns:minmax(310px,1.25fr) minmax(300px,1fr);gap:9px}
+ .attendance-groups-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .attendance-tile{min-height:131px}
+ .rightpane .paymentbuttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-height:750px){
+ .topbar{min-height:65px}
+ .attendance-tile{min-height:125px}
+ .mainbody>.demo{font-size:9px}
+ .rightpane .payment{padding:10px 14px}
+ .rightpane .total{padding:10px 14px 12px}
+ .rightpane .total small{display:none}
+}
+@media(max-width:740px){
+ .shell{height:auto;min-height:100vh;overflow:auto}
+ .shell>main{height:auto;min-height:100vh;overflow:visible}
+ .mainbody{overflow:visible}
+ .salesgrid{display:flex;flex-direction:column}
+ .salesgrid>.panel{height:auto;min-height:440px}
+ .attendance-browser{min-height:270px}
+ .rightpane .cart{min-height:200px}
+}

@@ -1,0 +1,21 @@
+
+# Dependencias
+node_modules/
+**/node_modules/
+
+# Arquivos compilados
+dist/
+**/dist/
+build/
+**/build/
+release/
+
+# Arquivos temporarios
+*.tsbuildinfo
+*.log
+
+# Configuracoes sensiveis
+.env
+.env.*
+!.env.example
+
